@@ -9,6 +9,12 @@ soup = BeautifulSoup(response.text, 'html.parser')
 apt_list = soup.find_all('div', {'data-cy': 'l-card'})
 
 filtered_apartments = []
+while True:
+    try:
+        user_budget = float(input("Enter your budget: "))
+        break
+    except ValueError:
+        print("Please enter a valid budget.")
 
 def get_apartments(url, budget):
     for apt in apt_list:
@@ -42,4 +48,4 @@ def get_apartments(url, budget):
     print(filtered_apartments)
     return filtered_apartments
 
-get_apartments(url, 1800)
+get_apartments(url, user_budget)
